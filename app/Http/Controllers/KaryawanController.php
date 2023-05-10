@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
 
@@ -11,14 +12,19 @@ class KaryawanController extends Controller
     {
         $data['title'] = 'Karyawan';
         $data['k'] = $request->get('k');
-        $data['karyawans'] = Karyawan::where('nama', 'like', '%' . $data['k'] . '%')->get();
+        $data['karyawans'] = Karyawan::where('nama', 'like', '%' . $data['k'] . '%')
+            ->orWhere('id', 'like', '%' . $data['k'] . '%')
+            ->orWhere('jabatan_id', 'like', '%' . $data['k'] . '%')
+            ->get();
 
         return view('karyawan.index', $data);
     }
 
     public function create()
     {
-        return view('karyawan.create');
+        $data['title'] = 'Add Karyawan';
+        $jabatans = Jabatan::all();
+        return view('karyawan.create', $data, compact('jabatans'));
     }
 
     public function store(Request $request)
@@ -42,7 +48,9 @@ class KaryawanController extends Controller
 
     public function edit(Karyawan $karyawan)
     {
-        return view('karyawan.edit', compact('karyawan'));
+        $data['title'] = 'Edit Karyawan';
+        $jabatans = Jabatan::all();
+        return view('karyawan.edit', $data, compact('karyawan', 'jabatans'));
     }
 
     public function update(Request $request, Karyawan $karyawan)

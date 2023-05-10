@@ -25,7 +25,7 @@
         <table class="table table-bordered table-striped table-hover mb-0">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>ID Karyawan</th>
                     <th>Karyawan Name</th>
                     <th>Alamat</th>
                     <th>Tanggal Lahir</th>
@@ -36,7 +36,7 @@
             <?php $no = 1 ?>
             @foreach($karyawans as $karyawan)
             <tr>
-                <td>{{ $no++ }}</td>
+                <td>{{ $karyawan->id }}</td>
                 <td>{{ $karyawan->nama }}</td>
                 <td>{{ $karyawan->alamat }}</td>
                 <td>{{ $karyawan->tanggal_lahir }}</td>

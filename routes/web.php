@@ -25,7 +25,7 @@ Route::get('/index', [FrontendController::class, 'index']);
 
 //route CRUD query builder
 Route::get('/jabatan', [JabatanController::class, 'index']);
-Route::get('/jabatan/tambah', [JabatanController::class, 'tambah']);
+Route::get('/jabatan/create', [JabatanController::class, 'tambah']);
 Route::post('/jabatan/store', [JabatanController::class, 'store']);
 Route::get('/jabatan/edit/{id}', [JabatanController::class, 'edit']);
 Route::post('/jabatan/update', [JabatanController::class, 'update']);
