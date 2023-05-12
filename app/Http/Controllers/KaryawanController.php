@@ -14,7 +14,10 @@ class KaryawanController extends Controller
         $data['k'] = $request->get('k');
         $data['karyawans'] = Karyawan::where('nama', 'like', '%' . $data['k'] . '%')
             ->orWhere('id', 'like', '%' . $data['k'] . '%')
-            ->orWhere('jabatan_id', 'like', '%' . $data['k'] . '%')
+            ->orWhereHas('jabatan', function ($query) use ($data) {
+                $query->where('nama', 'like', '%' . $data['k'] . '%');
+            })
+            ->with('jabatan') // Menambahkan eager loading untuk memuat relasi jabatan
             ->get();
 
         return view('karyawan.index', $data);

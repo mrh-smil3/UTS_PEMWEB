@@ -29,18 +29,18 @@
                     <th>Karyawan Name</th>
                     <th>Alamat</th>
                     <th>Tanggal Lahir</th>
-                    <th>Jabatan ID</th>
+                    <th>Jabatan</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
-            <?php $no = 1 ?>
+            
             @foreach($karyawans as $karyawan)
             <tr>
                 <td>{{ $karyawan->id }}</td>
                 <td>{{ $karyawan->nama }}</td>
                 <td>{{ $karyawan->alamat }}</td>
                 <td>{{ $karyawan->tanggal_lahir }}</td>
-                <td>{{ $karyawan->jabatan_id }}</td>
+                <td>{{ $karyawan->jabatan->nama_jabatan }}</td>
                 <td>
                     <a class="btn btn-sm btn-warning" href="{{ route('karyawan.edit', $karyawan) }}">Edit</a>
                     <form method="POST" action="{{ route('karyawan.destroy', $karyawan) }}" style="display: inline-block;">
